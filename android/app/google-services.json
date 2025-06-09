@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "679848708629",
+    "project_id": "e-libs",
+    "storage_bucket": "e-libs.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679848708629:android:465576b148f54acd901c1c",
+        "android_client_info": {
+          "package_name": "com.example.eperpus_full_api"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmjS9EhC5JqQ7BrgdmGDpisU-qCtotUgU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
