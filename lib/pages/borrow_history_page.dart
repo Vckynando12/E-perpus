@@ -5,7 +5,7 @@ import '../providers/auth_provider.dart';
 import 'package:intl/intl.dart';
 
 class BorrowHistoryPage extends StatefulWidget {
-  const BorrowHistoryPage({Key? key}) : super(key: key);
+  const BorrowHistoryPage({super.key});
 
   @override
   State<BorrowHistoryPage> createState() => _BorrowHistoryPageState();
@@ -17,7 +17,10 @@ class _BorrowHistoryPageState extends State<BorrowHistoryPage> {
     super.initState();
     final userId = context.read<AuthProvider>().userId;
     if (userId != null) {
-      Future.microtask(() => context.read<BorrowProvider>().getBorrowHistory(userId));
+      Future.microtask(() {
+        if (!mounted) return;
+        context.read<BorrowProvider>().getBorrowHistory(userId);
+      });
     }
   }
 

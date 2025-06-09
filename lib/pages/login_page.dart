@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -42,10 +42,13 @@ class _LoginPageState extends State<LoginPage> {
                   ElevatedButton(
                     onPressed: () async {
                       await auth.login(emailController.text, passwordController.text);
+                      if (!mounted) return;
                       if (auth.errorMessage == null && auth.userRole != null) {
                         if (auth.userRole == 'admin') {
+                          if (!mounted) return;
                           Navigator.pushReplacementNamed(context, '/admin');
                         } else {
+                          if (!mounted) return;
                           Navigator.pushReplacementNamed(context, '/home');
                         }
                       }

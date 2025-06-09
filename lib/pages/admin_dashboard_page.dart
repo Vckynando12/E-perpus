@@ -5,7 +5,7 @@ import '../providers/borrow_provider.dart';
 import 'package:intl/intl.dart';
 
 class AdminDashboardPage extends StatefulWidget {
-  const AdminDashboardPage({Key? key}) : super(key: key);
+  const AdminDashboardPage({super.key});
 
   @override
   State<AdminDashboardPage> createState() => _AdminDashboardPageState();
@@ -19,6 +19,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> with SingleTick
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     Future.microtask(() {
+      if (!mounted) return;
       context.read<UserProvider>().fetchAllUsers();
       context.read<BorrowProvider>().getAllBorrowLogs();
     });

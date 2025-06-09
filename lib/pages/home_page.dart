@@ -5,7 +5,7 @@ import '../providers/borrow_provider.dart';
 import '../providers/auth_provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,7 +15,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => context.read<BookProvider>().fetchBooks());
+    Future.microtask(() {
+      if (!mounted) return;
+      context.read<BookProvider>().fetchBooks();
+    });
   }
 
   @override
@@ -65,11 +68,14 @@ class _HomePageState extends State<HomePage> {
                                   bookId: book.id,
                                   bookTitle: book.title,
                                 );
+                                if (!mounted) return;
                                 if (borrowProvider.successMessage != null) {
+                                  if (!mounted) return;
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text(borrowProvider.successMessage!)),
                                   );
                                 } else if (borrowProvider.errorMessage != null) {
+                                  if (!mounted) return;
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text(borrowProvider.errorMessage!), backgroundColor: Colors.red),
                                   );
